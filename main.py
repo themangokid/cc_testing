@@ -1,4 +1,19 @@
 # Coding style: https://www.python.org/dev/peps/pep-0008/
+import requests  # https://requests.readthedocs.io/en/master/user/quickstart/
+import json
+
+
+# De olika intervallen är för att skicka bitcoin
+blockchain_fee_btc_ = 'fastestFee: The lowest fee (in satoshis per byte) that will currently result in the fastest transaction confirmations (usually 0 to 1 block delay). \n halfHourFee: The lowest fee (in satoshis per byte) that will confirm transactions within half an hour (with 90% probability). \n hourFee: The lowest fee (in satoshis per byte) that will confirm transactions within an hour (with 90% probability). \n'
+print(blockchain_fee_btc_)
+
+
+r = requests.get('https://bitcoinfees.earn.com/api/v1/fees/recommended', data={'key': 'value'})
+print(r.json())
+
+
+
+
 class kund:
     def __init__(self, namn, investering, trading_tillatet, bara_kop, antal_manader):
         self.namn = namn
@@ -7,7 +22,7 @@ class kund:
         self.bara_kop = bara_kop
         self.binance_withdraw_fee = 50  # 0.0005 BTC
         self.trading_tillatet_fee_percent = 1 - (
-                    antal_manader * 10) / 100  # 10% avdrag på totala feen per månad vi får trada med det kapitalet. max 10 mån
+                antal_manader * 10) / 100  # 10% avdrag på totala feen per månad vi får trada med det kapitalet. max 10 mån
 
         if self.investering < 100:
             self.coinbase_fee = 10
@@ -18,7 +33,6 @@ class kund:
         elif self.investering > 500 < 2000:
             self.coinbase_fee = 30
         self.cb_total_fees = self.coinbase_fee * 2
-
 
         if trading_tillatet == "nej":
             if self.investering <= 500:
@@ -63,7 +77,7 @@ class kund:
                   "Foretagets fee:      {4}\n"
                   "Total fees för kund: {5}\n".format(self.namn, self.investering, self.coinbase_fee,
                                                       self.binance_withdraw_fee, self.foretagets_fee, ((
-                                                                                                                   self.cb_total_fees + self.foretagets_fee + self.binance_withdraw_fee) * self.trading_tillatet_fee_percent)))
+                                                                                                               self.cb_total_fees + self.foretagets_fee + self.binance_withdraw_fee) * self.trading_tillatet_fee_percent)))
 
 
 # Trading tillåten
@@ -71,12 +85,10 @@ class kund:
 kund1 = kund("Evert Noobsson", 50000, "ja", "nej", 10)
 kund1.result()
 
-
 # Bara köp
 # Namn, investering, trading_tillatet, bara_kop, antal_manader
 kund2 = kund("Evert Noobsson", 50000, "nej", "ja", 0)
 kund2.result()
-
 
 # Riktig kund krook
 krook = kund("Krook1", 3000, "nej", "ja", 0)
