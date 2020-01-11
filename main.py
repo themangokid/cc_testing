@@ -20,7 +20,6 @@ class kund:
         self.cb_total_fees = self.coinbase_fee * 2
 
 
-
         if trading_tillatet == "nej":
             if self.investering <= 500:
                 self.foretagets_fee = self.cb_total_fees + 50
@@ -44,7 +43,7 @@ class kund:
             elif self.investering >= 10000:
                 self.foretagets_fee = self.cb_total_fees + self.binance_withdraw_fee + 350
 
-    def myfunc(self):
+    def result(self):
         if self.bara_kop == "ja":
             print("bara_köp")
             print("Köpare:              {0}\n"
@@ -70,11 +69,15 @@ class kund:
 # Trading tillåten
 # Namn, investering, trading_tillatet, bara_kop, antal_manader
 kund1 = kund("Evert Noobsson", 50000, "ja", "nej", 10)
+kund1.result()
 
-kund1.myfunc()
 
 # Bara köp
 # Namn, investering, trading_tillatet, bara_kop, antal_manader
 kund2 = kund("Evert Noobsson", 50000, "nej", "ja", 0)
+kund2.result()
 
-kund2.myfunc()
+
+# Riktig kund krook
+krook = kund("Krook1", 3000, "nej", "ja", 0)
+krook.result()
