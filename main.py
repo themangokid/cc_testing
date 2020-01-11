@@ -2,19 +2,18 @@
 import requests  # https://requests.readthedocs.io/en/master/user/quickstart/
 import json
 
-
 # De olika intervallen är för att skicka bitcoin
 blockchain_fee_btc_ = 'fastestFee: The lowest fee (in satoshis per byte) that will currently result in the fastest transaction confirmations (usually 0 to 1 block delay). \n halfHourFee: The lowest fee (in satoshis per byte) that will confirm transactions within half an hour (with 90% probability). \n hourFee: The lowest fee (in satoshis per byte) that will confirm transactions within an hour (with 90% probability). \n'
 print(blockchain_fee_btc_)
 
-
 r = requests.get('https://bitcoinfees.earn.com/api/v1/fees/recommended', data={'key': 'value'})
 print(r.json())
 
+"""
+Kommentarer kan vara på svenska men all kod bör vara på engelska.
+"""
 
-
-
-class kund:
+class Customer: # förslag: name, investment, trading_on, buy_only, number_of_months
     def __init__(self, namn, investering, trading_tillatet, bara_kop, antal_manader):
         self.namn = namn
         self.investering = investering
@@ -82,14 +81,14 @@ class kund:
 
 # Trading tillåten
 # Namn, investering, trading_tillatet, bara_kop, antal_manader
-kund1 = kund("Evert Noobsson", 50000, "ja", "nej", 10)
+kund1 = Customer("Evert Noobsson", 50000, "ja", "nej", 10)
 kund1.result()
 
 # Bara köp
 # Namn, investering, trading_tillatet, bara_kop, antal_manader
-kund2 = kund("Evert Noobsson", 50000, "nej", "ja", 0)
+kund2 = Customer("Evert Noobsson", 50000, "nej", "ja", 0)
 kund2.result()
 
 # Riktig kund krook
-krook = kund("Krook1", 3000, "nej", "ja", 0)
+krook = Customer("Krook1", 3000, "nej", "ja", 0)
 krook.result()
