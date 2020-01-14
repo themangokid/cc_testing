@@ -7,9 +7,11 @@ import json
 
 r = requests.get('https://bitcoinfees.earn.com/api/v1/fees/recommended', data={'key': 'value'})
 btc_fee_price = json.loads(r.text)
-satoshi_list = btc_fee_price.items()
-print(satoshi_list[0])
-###### NOT WORKING
+print(btc_fee_price)
+satoshi_list = btc_fee_price.get('fastestFee')
+satoshi_f = list(satoshi_list)
+print(satoshi_f[0])
+
 
 btc_price_request = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin")
 btc_price = (btc_price_request.json()[0]["price_usd"])
@@ -83,10 +85,10 @@ class Customer:  # förslag: name, investment, trading_on, buy_only, number_of_m
 
 
 kund1 = Customer("Evert Noobsson", 50000, "ja", "nej", 10)
-kund1.result()
+#kund1.result()
 
 kund2 = Customer("Evert Noobsson", 50000, "nej", "ja", 0)
-kund2.result()
+#kund2.result()
 
 krook = Customer("Krook1", 3000, "nej", "ja", 0)
-krook.result()
+#krook.result()
