@@ -9,7 +9,6 @@ satoshi_list = btc_fee_price.items()
 print(satoshi_list[0])
 
 # Skriv ut TUPLE
-
 # souce https://medium.com/@randerson112358/get-bitcoin-price-in-real-time-using-python-98b7393b6152  inte perfekt realtime
 # https://bitcoin.stackexchange.com/questions/1195/how-to-calculate-transaction-size-before-sending-legacy-non-segwit-p2pkh-p2sh/46379
 
@@ -18,6 +17,9 @@ btc_price = (btc_price_request.json()[0]["price_usd"])
 
 
 # print(btc_price)
+
+
+# Gör en function för detta / en klass
 
 
 class Customer:  # förslag: name, investment, trading_on, buy_only, number_of_months
