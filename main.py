@@ -1,25 +1,19 @@
 # Coding style: https://www.python.org/dev/peps/pep-0008/
-import requests  # https://requests.readthedocs.io/en/master/user/quickstart/
+# https://requests.readthedocs.io/en/master/user/quickstart/
+# souce https://medium.com/@randerson112358/get-bitcoin-price-in-real-time-using-python-98b7393b6152  inte perfekt realtime
+# https://bitcoin.stackexchange.com/questions/1195/how-to-calculate-transaction-size-before-sending-legacy-non-segwit-p2pkh-p2sh/46379
+import requests
 import json
 
-blockchain_fee_btc_ = 'fastestFee: The lowest fee (in satoshis per byte) that will currently result in the fastest transaction confirmations (usually 0 to 1 block delay).\n halfHourFee: The lowest fee (in satoshis per byte) that will confirm transactions within half an hour (with 90% probability).\n hourFee: The lowest fee (in satoshis per byte) that will confirm transactions within an hour (with 90% probability).\n'
 r = requests.get('https://bitcoinfees.earn.com/api/v1/fees/recommended', data={'key': 'value'})
 btc_fee_price = json.loads(r.text)
 satoshi_list = btc_fee_price.items()
 print(satoshi_list[0])
-
-# Skriv ut TUPLE
-# souce https://medium.com/@randerson112358/get-bitcoin-price-in-real-time-using-python-98b7393b6152  inte perfekt realtime
-# https://bitcoin.stackexchange.com/questions/1195/how-to-calculate-transaction-size-before-sending-legacy-non-segwit-p2pkh-p2sh/46379
+###### NOT WORKING
 
 btc_price_request = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin")
 btc_price = (btc_price_request.json()[0]["price_usd"])
 
-
-# print(btc_price)
-
-
-# Gör en function för detta / en klass
 
 
 class Customer:  # förslag: name, investment, trading_on, buy_only, number_of_months
