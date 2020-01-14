@@ -1,18 +1,23 @@
 # Coding style: https://www.python.org/dev/peps/pep-0008/
 import requests  # https://requests.readthedocs.io/en/master/user/quickstart/
 import json
-import extra
 
-# De olika intervallen är för att skicka bitcoin
 blockchain_fee_btc_ = 'fastestFee: The lowest fee (in satoshis per byte) that will currently result in the fastest transaction confirmations (usually 0 to 1 block delay).\n halfHourFee: The lowest fee (in satoshis per byte) that will confirm transactions within half an hour (with 90% probability).\n hourFee: The lowest fee (in satoshis per byte) that will confirm transactions within an hour (with 90% probability).\n'
-print(blockchain_fee_btc_)
-
 r = requests.get('https://bitcoinfees.earn.com/api/v1/fees/recommended', data={'key': 'value'})
-print(r.json())
+btc_fee_price = json.loads(r.text)
+satoshi_list = btc_fee_price.items()
+print(satoshi_list[0])
 
-"""
-Kommentarer kan vara på svenska men all kod bör vara på engelska.
-"""
+# Skriv ut TUPLE
+
+# souce https://medium.com/@randerson112358/get-bitcoin-price-in-real-time-using-python-98b7393b6152  inte perfekt realtime
+# https://bitcoin.stackexchange.com/questions/1195/how-to-calculate-transaction-size-before-sending-legacy-non-segwit-p2pkh-p2sh/46379
+
+btc_price_request = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin")
+btc_price = (btc_price_request.json()[0]["price_usd"])
+
+
+# print(btc_price)
 
 
 class Customer:  # förslag: name, investment, trading_on, buy_only, number_of_months
@@ -23,7 +28,7 @@ class Customer:  # förslag: name, investment, trading_on, buy_only, number_of_m
         self.bara_kop = buy_only
         self.binance_withdraw_fee = 50  # 0.0005 BTC
         self.trading_tillatet_fee_percent = 1 - (
-                time_interval_of_investment * 10) / 100  # 10% avdrag på totala feen per månad vi får trada med det kapitalet. max 10 mån
+                time_interval_of_investment * 10) / 100
 
         if self.investing < 100:
             self.coinbase_fee = 10
@@ -81,16 +86,11 @@ class Customer:  # förslag: name, investment, trading_on, buy_only, number_of_m
                                                                                                             self.cb_total_fees + self.company_fee + self.binance_withdraw_fee) * self.trading_tillatet_fee_percent)))
 
 
-# Trading tillåten
-# Namn, investering, trading_tillatet, bara_kop, antal_manader
 kund1 = Customer("Evert Noobsson", 50000, "ja", "nej", 10)
 kund1.result()
 
-# Bara köp
-# Namn, investering, trading_tillatet, bara_kop, antal_manader
 kund2 = Customer("Evert Noobsson", 50000, "nej", "ja", 0)
 kund2.result()
 
-# Riktig kund krook
 krook = Customer("Krook1", 3000, "nej", "ja", 0)
 krook.result()
