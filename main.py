@@ -5,21 +5,21 @@
 import requests
 import json
 
-r = requests.get('https://bitcoinfees.earn.com/api/v1/fees/recommended', data={'key': 'value'})
-btc_fee_price = json.loads(r.text)
-print(btc_fee_price)
-satoshi = btc_fee_price.get('fastestFee', "")
+class Transaction_fees:
+    def __init__(self, cc):
+        self.cc = cc
+        def btc_transfer():
+            r = requests.get('https://bitcoinfees.earn.com/api/v1/fees/recommended', data={'key': 'value'})
+            btc_fee_price = json.loads(r.text)
+            satoshi = btc_fee_price.get('fastestFee', "")
+            btc_price_request = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin")
+            btc_price = (btc_price_request.json()[0]["price_usd"])
+            float(btc_price)
+            btc_transfer_fee = btc_price * satoshi
+            return btc_transfer_fee
 
-btc_price_request = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin")
-btc_price = (btc_price_request.json()[0]["price_usd"])
 
-print(type(btc_price))
-print(type(satoshi))
-
-#fee = btc_price * satoshi
-
-
-class Customer:  # förslag: name, investment, trading_on, buy_only, number_of_months
+class Customer:
     def __init__(self, name, investing, trading_allowed, buy_only, time_interval_of_investment):
         self.namn = name
         self.investing = investing
@@ -83,13 +83,16 @@ class Customer:  # förslag: name, investment, trading_on, buy_only, number_of_m
                   "Total fees för kund: {5}\n".format(self.namn, self.investing, self.coinbase_fee,
                                                       self.binance_withdraw_fee, self.company_fee, ((
                                                                                                             self.cb_total_fees + self.company_fee + self.binance_withdraw_fee) * self.trading_tillatet_fee_percent)))
+# Run customer calcs
+def customers():
+    kund1 = Customer("Evert Noobsson", 50000, "ja", "nej", 10)
+    kund1.result()
 
+    kund2 = Customer("Evert Noobsson", 50000, "nej", "ja", 0)
+    kund2.result()
 
-kund1 = Customer("Evert Noobsson", 50000, "ja", "nej", 10)
-# kund1.result()
+    krook = Customer("Krook1", 3000, "nej", "ja", 0)
+    krook.result()
 
-kund2 = Customer("Evert Noobsson", 50000, "nej", "ja", 0)
-# kund2.result()
-
-krook = Customer("Krook1", 3000, "nej", "ja", 0)
-# krook.result()
+# Run transaction_fees
+transaction = Transaction_fees('btc')
