@@ -5,28 +5,40 @@
 import requests
 import json
 
+# Har gjort denna klassen så vi slipper göra en funktion för varje cryptocurrency. cc_name är det du slänger in i funktionen. Måste var exaktnamn. Vi skulle kunna ta en hel lista och sedan
 
 class Transaction_fees:
     def __init__(self, cc):
         self.cc = cc
+        cc_name = cc
+        print(cc_name)
+        cc = requests.get("https://api.coinmarketcap.com/v1/ticker/{}".format(cc_name))
+        print(cc.json()[0]['price_usd'])
+
 
     def btc_transfer(self):
         r = requests.get('https://bitcoinfees.earn.com/api/v1/fees/recommended', data={'key': 'value'})
         btc_fee_price = json.loads(r.text)
         satoshi = btc_fee_price.get('fastestFee', "")
+        satoshi_f = float(satoshi)
         btc_price_request = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin")
         btc_price = (btc_price_request.json()[0]["price_usd"])
-        float(btc_price)
-        btc_transfer_fee = btc_price * satoshi
+        btc_price_f =float(btc_price)
+
+
+        print(satoshi_f)
+        print(btc_price_f)
+
+        btc_transfer_fee = btc_price_f * satoshi_f * 0.00000001
         return btc_transfer_fee
 
 
 class Customer:
     def __init__(self, name, investing, trading_allowed, buy_only, time_interval_of_investment):
-        self.namn = name
+        self.name = name
         self.investing = investing
         self.trading_allowed = trading_allowed
-        self.bara_kop = buy_only
+        self.buy_only = buy_only
         self.binance_withdraw_fee = 50  # 0.0005 BTC
         self.trading_tillatet_fee_percent = 1 - (
                 time_interval_of_investment * 10) / 100
@@ -86,20 +98,19 @@ class Customer:
                                                       self.binance_withdraw_fee, self.company_fee, ((
                                                                                                             self.cb_total_fees + self.company_fee + self.binance_withdraw_fee) * self.trading_tillatet_fee_percent)))
 
-
 # Run customer calcs
 def customers():
     kund1 = Customer("Evert Noobsson", 50000, "ja", "nej", 10)
     kund1.result()
-
     kund2 = Customer("Evert Noobsson", 50000, "nej", "ja", 0)
     kund2.result()
+    rk = Customer("rk", 3000, "nej", "ja", 0)
+    rk.result()
+    f = Customer("f", 1000, "nej", "ja", 0)
+    f.result()
 
-    krook = Customer("Krook1", 3000, "nej", "ja", 0)
-    krook.result()
 
 
-# Run transaction_fees
-transaction = Transaction_fees('btc')
+transaction = Transaction_fees('bitcoin')
 
 print(transaction.btc_transfer())
