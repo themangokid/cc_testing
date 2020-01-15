@@ -13,8 +13,8 @@ satoshi = btc_fee_price.get('fastestFee', "")
 btc_price_request = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin")
 btc_price = (btc_price_request.json()[0]["price_usd"])
 
-print(btc_price)
-print(satoshi)
+print(type(btc_price))
+print(type(satoshi))
 
 #fee = btc_price * satoshi
 
