@@ -26,6 +26,7 @@ class Transaction_fees:
         btc_price_f =float(btc_price)
 
 
+
         print(satoshi_f)
         print(btc_price_f)
 
@@ -77,17 +78,17 @@ class Customer:
                 self.company_fee = self.cb_total_fees + self.binance_withdraw_fee + 350
 
     def result(self):
-        if self.bara_kop == "ja":
-            print("bara_köp")
+        if self.buy_only == "ja":
+            print("buy_only")
             print("Köpare:              {0}\n"
                   "Investering:         {1}\n"
                   "Coinbase fee: (köp): {2}\n"
                   "Coinbase fee: (send):{2}\n"
                   "Foretagets fee:      {3}\n"
-                  "Total fees för kund: {4}\n".format(self.namn, self.investing, self.coinbase_fee,
+                  "Total fees för kund: {4}\n".format(self.name, self.investing, self.coinbase_fee,
                                                       self.company_fee, (self.cb_total_fees + self.company_fee)))
         elif self.trading_allowed == "ja":
-            print("trading_tillåten")
+            print("trading_allowed")
             print("Köpare:              {0}\n"
                   "Investering:         {1}\n"
                   "Coinbase fee: (köp): {2}\n"
