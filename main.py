@@ -5,26 +5,6 @@
 import requests
 import json
 import blockchain
-from flask import Flask
-
-
-
-app = Flask(__name__)
-
-
-@app.route("/")
-def main():
-    return '''Flask installed.  '''
-
-
-@app.route('/<name>')
-def hello_name(name):
-    return "Hello {}!".format(name)
-
-
-if __name__ == "__main__":
-    app.run()
-
 
 
 # Har gjort denna klassen så vi slipper göra en funktion för varje cryptocurrency. cc_name är det du slänger in i funktionen. Måste var exaktnamn. Vi skulle kunna ta en hel lista och sedan
