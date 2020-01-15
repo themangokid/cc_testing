@@ -4,6 +4,28 @@
 # https://bitcoin.stackexchange.com/questions/1195/how-to-calculate-transaction-size-before-sending-legacy-non-segwit-p2pkh-p2sh/46379
 import requests
 import json
+import blockchain
+from flask import Flask
+
+
+
+app = Flask(__name__)
+
+
+@app.route("/")
+def main():
+    return '''Flask installed.  '''
+
+
+@app.route('/<name>')
+def hello_name(name):
+    return "Hello {}!".format(name)
+
+
+if __name__ == "__main__":
+    app.run()
+
+
 
 # Har gjort denna klassen så vi slipper göra en funktion för varje cryptocurrency. cc_name är det du slänger in i funktionen. Måste var exaktnamn. Vi skulle kunna ta en hel lista och sedan
 
@@ -24,8 +46,6 @@ class Transaction_fees:
         btc_price_request = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin")
         btc_price = (btc_price_request.json()[0]["price_usd"])
         btc_price_f =float(btc_price)
-
-
 
         print(satoshi_f)
         print(btc_price_f)
@@ -113,5 +133,4 @@ def customers():
 
 
 transaction = Transaction_fees('bitcoin')
-
 print(transaction.btc_transfer())
