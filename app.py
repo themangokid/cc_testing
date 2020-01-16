@@ -1,31 +1,15 @@
-
 # https://hackersandslackers.com/flask-sqlalchemy-database-models/
-from flask import Flask, escape, url_for, render_template, send_file
+# https://realpython.com/primer-on-jinja-templating/
+from flask import Flask, render_template, send_file, escape, url_for
+from jinja2 import Template
+
+
 app = Flask(__name__)
-
-#lade till flask, send_file
-
-#@app.route("/")
-#def main():
-#    return '''Flask installed.  '''
-
 
 
 @app.route('/')
-def get_image():
-    filename = 'kitten.jpg'
-    return send_file(filename, mimetype='kitten.jpg')
-
-# Denna delen kallas app på den riktiga sidan.
-@app.route('/cc')
-def cc():
-    return render_template()
-
-
-@app.route('/<name>')
-def hello_name(name):
-    return "Hello {}!".format(name)
-
+def render_index():
+    return render_template('templates/index.html')
 
 if __name__ == "__main__":
     app.run()
