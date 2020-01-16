@@ -7,8 +7,7 @@ import json
 import blockchain
 
 
-# Har gjort denna klassen så vi slipper göra en funktion för varje cryptocurrency. cc_name är det du slänger in i funktionen. Måste var exaktnamn. Vi skulle kunna ta en hel lista och sedan
-
+# Denna klassen ska ta in en cc och sedan skicka ut den riktiga kostnanden i SEK/DOLLAR/USD
 class Transaction_fees:
     def __init__(self, cc):
         self.cc = cc

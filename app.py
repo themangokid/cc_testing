@@ -16,6 +16,10 @@ def get_image():
     filename = 'kitten.jpg'
     return send_file(filename, mimetype='kitten.jpg')
 
+# Denna delen kallas app på den riktiga sidan.
+@app.route('/cc')
+def cc():
+    return render_template()
 
 
 @app.route('/<name>')
