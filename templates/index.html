@@ -2,7 +2,7 @@
 <!--- INDEX --->
 <!DOCTYPE html>
 <html>
-
+<!-- Kom ihåg att ändra all css och liknande till LOKAL css. Dvs inga url:er eller CDNs. -->
 <head>
     <!-- favicon -->
     <meta name="description" content="Buy ethereum and store them safetly">
@@ -20,6 +20,13 @@
     </style>
 </head>
 
+<!-- Animation -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+</head>
+
+
+<!-- Form -->
 <div class="form-check">
   <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
   <label class="form-check-label" for="defaultCheck1">
@@ -33,14 +40,13 @@
   </label>
 </div>
 
-
+<!-- Navbar -->
 <body class="col-lg-10 container-fluid bg h-100" style="margin-top:20; margin: 0 auto;">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -71,26 +77,32 @@
   </div>
 </nav>
 
-
+<!-- Original website starts here -->
     <div style="margin:0 20%;">
         <nav class="navbar navbar-light bg_block_color" style="margin: 0 auto;">
             <a class="navbar-brand" href="#bottom">
-                <img src="exchange.svg" width="45" height="45" class="d-inline-block align-top" alt=""> Coineer
+                <img src="{{url_for('static', filename='exchange.svg')}}" width="45" height="45" class="d-inline-block align-top" alt=""> Coineer
             </a>
         </nav>
         <div class="col-lg-10" style="margin: 0 auto;" small-d-margin medium-d-margin large-d-margin>
             <div class="h-100" style="margin-right: 0  20% ">
-                <h2 class="display-5">Coineer - We hold coins</h2>
-                <p class="lead">We believe in a trustbased relationship with you as a customer. Saving longterm using <samp>Ethereum</samp>, <samp>Bitcoin</samp> or <samp>Dai</samp> as a currency instead of conventional banking.</p>
-                <hr class="my-4">
-                <p> Pay with Swish or cash (SEK) and we find a competative price on the market.</p>
+                <h2  class="display-5">Coineer - We hold coins</h2>
+                <div class="animated fadeIn fast">
+                <p class="lead" >We believe in a trust-based relationship with you as a customer. Saving long-term using <samp>Ethereum</samp>, <samp>Bitcoin</samp> or <samp>Dai</samp> as a currency instead of conventional banking.</p>
+                </div>
+
+                <hr class="animated fadeIn delay-2s" class="my-4">
+                <div class="animated fadeIn fast">
+                    <p> Pay with Swish or cash (SEK) and we find a competitive price on the market. Usually takes up to two business days. </p>
+                </div>
                 <div style="margin-top:5%;">
                     <p class="lead">
                         <a href="/app" class="btn btn-primary btn-lg mt-1">
-                     Buy <img src="eth.svg" width="20" height="22" style=" margin-top:-6px;">
+                     Buy <img src="{{url_for('static', filename='eth.svg')}}" width="20" height="22" style=" margin-top:-6px;">
+
                      </a>
                     </p>
-                    <div style="margin: 5% 5% 5% 0;">
+                    <div class="animated fadeIn delay-1s" style="margin: 5% 5% 5% 0;">
                         <h3> What we do: </h3>
                         <li> Walk through of wallet creation <samp><a href="https://www.myetherwallet.com/getting-started">myetherwallet.com</a></samp>
                             <li> Make sure that the price is reasonable </li>
@@ -102,10 +114,10 @@
                              </div>
                          </div>
                          <hr>
-                         <div style="margin-top:5%;">
+                         <div class="animated fadeIn delay-1s" style="margin-top:5%;">
                              <h5>
                            <samp class=""><a href="mailto:coineer@protonmail.com?subject=Buy Bitcoin "> coineer@protonmail.com </a></samp>
-                         </h5> If you know enough about crypto currencies and mostly want the oppertunity to buy, use the subject <samp> "Buy Bitcoin" or "Buy Ethereum"</samp>.
+                         </h5> If you know enough about crypto currencies and mostly want the opportunity to buy, use the subject <samp> "Buy Bitcoin" or "Buy Ethereum"</samp>.
                              <hr>
                          </div>
                      </div>

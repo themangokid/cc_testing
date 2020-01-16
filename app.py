@@ -1,7 +1,7 @@
 # https://hackersandslackers.com/flask-sqlalchemy-database-models/
 # https://realpython.com/primer-on-jinja-templating/
+
 from flask import Flask, render_template, send_file, escape, url_for
-from jinja2 import Template
 
 
 app = Flask(__name__)
