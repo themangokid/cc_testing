@@ -1,100 +1,116 @@
 # Coding style: https://www.python.org/dev/peps/pep-0008/
-import requests  # https://requests.readthedocs.io/en/master/user/quickstart/
+# https://requests.readthedocs.io/en/master/user/quickstart/
+# souce https://medium.com/@randerson112358/get-bitcoin-price-in-real-time-using-python-98b7393b6152  inte perfekt realtime
+# https://bitcoin.stackexchange.com/questions/1195/how-to-calculate-transaction-size-before-sending-legacy-non-segwit-p2pkh-p2sh/46379
+import requests
 import json
+import blockchain
 
 
-# De olika intervallen är för att skicka bitcoin
-blockchain_fee_btc_ = 'fastestFee: The lowest fee (in satoshis per byte) that will currently result in the fastest transaction confirmations (usually 0 to 1 block delay). \n ' \
-                      'halfHourFee: The lowest fee (in satoshis per byte) that will confirm transactions within half an hour (with 90% probability). \n ' \
-                      'hourFee: The lowest fee (in satoshis per byte) that will confirm transactions within an hour (with 90% probability). \n'
-print(blockchain_fee_btc_)
+# Har gjort denna klassen så vi slipper göra en funktion för varje cryptocurrency. cc_name är det du slänger in i funktionen. Måste var exaktnamn. Vi skulle kunna ta en hel lista och sedan
+
+class Transaction_fees:
+    def __init__(self, cc):
+        self.cc = cc
+        cc_name = cc
+        print(cc_name)
+        cc = requests.get("https://api.coinmarketcap.com/v1/ticker/{}".format(cc_name))
+        print(cc.json()[0]['price_usd'])
 
 
-btc_satoshi_fee = requests.get('https://bitcoinfees.earn.com/api/v1/fees/recommended', data={'key': 'value'})
-print(btc_satoshi_fee.json())
+    def btc_transfer(self):
+        r = requests.get('https://bitcoinfees.earn.com/api/v1/fees/recommended', data={'key': 'value'})
+        btc_fee_price = json.loads(r.text)
+        satoshi = btc_fee_price.get('fastestFee', "")
+        satoshi_f = float(satoshi)
+        btc_price_request = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin")
+        btc_price = (btc_price_request.json()[0]["price_usd"])
+        btc_price_f =float(btc_price)
 
-#souce https://medium.com/@randerson112358/get-bitcoin-price-in-real-time-using-python-98b7393b6152  inte perfekt realtime
-#BTC fee var jobbigare att räkna ut än jag trodde om du vill kika på det så kan du kolla här.
-#https://bitcoin.stackexchange.com/questions/1195/how-to-calculate-transaction-size-before-sending-legacy-non-segwit-p2pkh-p2sh/46379
-btc_price_request = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin")
-btc_price = (btc_price_request.json()[0]["price_usd"])
-print(btc_price)
-class kund:
-    def __init__(self, namn, investering, trading_tillatet, bara_kop, antal_manader):
-        self.namn = namn
-        self.investering = investering
-        self.trading_tillatet = trading_tillatet
-        self.bara_kop = bara_kop
+        print(satoshi_f)
+        print(btc_price_f)
+
+        btc_transfer_fee = btc_price_f * satoshi_f * 0.00000001
+        return btc_transfer_fee
+
+
+class Customer:
+    def __init__(self, name, investing, trading_allowed, buy_only, time_interval_of_investment):
+        self.name = name
+        self.investing = investing
+        self.trading_allowed = trading_allowed
+        self.buy_only = buy_only
         self.binance_withdraw_fee = 50  # 0.0005 BTC
         self.trading_tillatet_fee_percent = 1 - (
-                antal_manader * 10) / 100  # 10% avdrag på totala feen per månad vi får trada med det kapitalet. max 10 mån
+                time_interval_of_investment * 10) / 100
 
-        if self.investering < 100:
+        if self.investing < 100:
             self.coinbase_fee = 10
-        elif self.investering > 100 < 250:
+        elif self.investing > 100 < 250:
             self.coinbase_fee = 15
-        elif self.investering > 250 < 500:
+        elif self.investing > 250 < 500:
             self.coinbase_fee = 20
-        elif self.investering > 500 < 2000:
+        elif self.investing > 500 < 2000:
             self.coinbase_fee = 30
         self.cb_total_fees = self.coinbase_fee * 2
 
-        if trading_tillatet == "nej":
-            if self.investering <= 500:
-                self.foretagets_fee = self.cb_total_fees + 50
-            elif self.investering >= 500 <= 1000:
-                self.foretagets_fee = self.cb_total_fees + 150
-            elif self.investering >= 2500 <= 5000:
-                self.foretagets_fee = self.cb_total_fees + 200
-            elif self.investering >= 5000 <= 10000:
-                self.foretagets_fee = self.cb_total_fees + 250
-            elif self.investering >= 10000:
-                self.foretagets_fee = self.cb_total_fees + 350
-        elif trading_tillatet == "ja":
-            if self.investering <= 500:
-                self.foretagets_fee = self.cb_total_fees + self.binance_withdraw_fee + 50
-            elif self.investering >= 500 <= 1000:
-                self.foretagets_fee = self.cb_total_fees + self.binance_withdraw_fee + 150
-            elif self.investering >= 2500 <= 5000:
-                self.foretagets_fee = self.cb_total_fees + self.binance_withdraw_fee + 200
-            elif self.investering >= 5000 <= 10000:
-                self.foretagets_fee = self.cb_total_fees + self.binance_withdraw_fee + 250
-            elif self.investering >= 10000:
-                self.foretagets_fee = self.cb_total_fees + self.binance_withdraw_fee + 350
+        if trading_allowed == "nej":
+            if self.investing <= 500:
+                self.company_fee = self.cb_total_fees + 50
+            elif self.investing >= 500 <= 1000:
+                self.company_fee = self.cb_total_fees + 150
+            elif self.investing >= 2500 <= 5000:
+                self.company_fee = self.cb_total_fees + 200
+            elif self.investing >= 5000 <= 10000:
+                self.company_fee = self.cb_total_fees + 250
+            elif self.investing >= 10000:
+                self.company_fee = self.cb_total_fees + 350
+        elif trading_allowed == "ja":
+            if self.investing <= 500:
+                self.company_fee = self.cb_total_fees + self.binance_withdraw_fee + 50
+            elif self.investing >= 500 <= 1000:
+                self.company_fee = self.cb_total_fees + self.binance_withdraw_fee + 150
+            elif self.investing >= 2500 <= 5000:
+                self.company_fee = self.cb_total_fees + self.binance_withdraw_fee + 200
+            elif self.investing >= 5000 <= 10000:
+                self.company_fee = self.cb_total_fees + self.binance_withdraw_fee + 250
+            elif self.investing >= 10000:
+                self.company_fee = self.cb_total_fees + self.binance_withdraw_fee + 350
 
     def result(self):
-        if self.bara_kop == "ja":
-            print("bara_köp")
+        if self.buy_only == "ja":
+            print("buy_only")
             print("Köpare:              {0}\n"
                   "Investering:         {1}\n"
                   "Coinbase fee: (köp): {2}\n"
                   "Coinbase fee: (send):{2}\n"
                   "Foretagets fee:      {3}\n"
-                  "Total fees för kund: {4}\n".format(self.namn, self.investering, self.coinbase_fee,
-                                                      self.foretagets_fee, (self.cb_total_fees + self.foretagets_fee)))
-        elif self.trading_tillatet == "ja":
-            print("trading_tillåten")
+                  "Total fees för kund: {4}\n".format(self.name, self.investing, self.coinbase_fee,
+                                                      self.company_fee, (self.cb_total_fees + self.company_fee)))
+        elif self.trading_allowed == "ja":
+            print("trading_allowed")
             print("Köpare:              {0}\n"
                   "Investering:         {1}\n"
                   "Coinbase fee: (köp): {2}\n"
                   "Coinbase fee: (send):{2}\n"
                   "Binance  fee: (send):{3}\n"
                   "Foretagets fee:      {4}\n"
-                  "Total fees för kund: {5}\n".format(self.namn, self.investering, self.coinbase_fee,
-                                                      self.binance_withdraw_fee, self.foretagets_fee, ((
-                                                                                                               self.cb_total_fees + self.foretagets_fee + self.binance_withdraw_fee) * self.trading_tillatet_fee_percent)))
+                  "Total fees för kund: {5}\n".format(self.namn, self.investing, self.coinbase_fee,
+                                                      self.binance_withdraw_fee, self.company_fee, ((
+                                                                                                            self.cb_total_fees + self.company_fee + self.binance_withdraw_fee) * self.trading_tillatet_fee_percent)))
+
+# Run customer calcs
+def customers():
+    kund1 = Customer("Evert Noobsson", 50000, "ja", "nej", 10)
+    kund1.result()
+    kund2 = Customer("Evert Noobsson", 50000, "nej", "ja", 0)
+    kund2.result()
+    rk = Customer("rk", 3000, "nej", "ja", 0)
+    rk.result()
+    f = Customer("f", 1000, "nej", "ja", 0)
+    f.result()
 
 
-# Trading tillåten
-# Namn, investering, trading_tillatet, bara_kop, antal_manader
-kund1 = kund("Evert Noobsson", 50000, "ja", "nej", 10)
-kund1.result()
 
-# Bara köp
-# Namn, investering, trading_tillatet, bara_kop, antal_manader
-kund2 = kund("Evert Noobsson", 50000, "nej", "ja", 0)
-kund2.result()
-
-# Riktig kund krook
-krook = kund("Krook1", 3000, "nej", "ja", 0)
-krook.result()
+transaction = Transaction_fees('bitcoin')
+print(transaction.btc_transfer())
