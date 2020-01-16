@@ -16,7 +16,6 @@ class Transaction_fees:
         cc = requests.get("https://api.coinmarketcap.com/v1/ticker/{}".format(cc_name))
         print(cc.json()[0]['price_usd'])
 
-
     def btc_transfer(self):
         r = requests.get('https://bitcoinfees.earn.com/api/v1/fees/recommended', data={'key': 'value'})
         btc_fee_price = json.loads(r.text)
@@ -24,7 +23,7 @@ class Transaction_fees:
         satoshi_f = float(satoshi)
         btc_price_request = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin")
         btc_price = (btc_price_request.json()[0]["price_usd"])
-        btc_price_f =float(btc_price)
+        btc_price_f = float(btc_price)
 
         print(satoshi_f)
         print(btc_price_f)
@@ -98,6 +97,7 @@ class Customer:
                                                       self.binance_withdraw_fee, self.company_fee, ((
                                                                                                             self.cb_total_fees + self.company_fee + self.binance_withdraw_fee) * self.trading_tillatet_fee_percent)))
 
+
 # Run customer calcs
 def customers():
     kund1 = Customer("Evert Noobsson", 50000, "ja", "nej", 10)
@@ -108,7 +108,6 @@ def customers():
     rk.result()
     f = Customer("f", 1000, "nej", "ja", 0)
     f.result()
-
 
 
 transaction = Transaction_fees('bitcoin')
