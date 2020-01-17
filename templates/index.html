@@ -9,13 +9,14 @@
     <meta name="author" content="Coineer">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" src="{{url_for('temsplates', filename='bootstrap.min.css')}}">
     <!-- <link rel="stylesheet" href="css/bootstrap.min.css">-->
     <title>Coineer - Your Local Bitcoin and Ethereum Exchange</title>
     <style media="screen">
           #ex1Slider .slider-selection {
       background: #BABABA;
       }
+
 
     </style>
 </head>
@@ -131,7 +132,8 @@
                 </h5> If you know enough about crypto currencies and mostly want the opportunity to buy, use the subject
                 <samp> "Buy Bitcoin" or "Buy Ethereum"</samp>.
                 <p>We bough here, something something well played!</p>
-                <img class="display-4" width="871.5px" height="455px" src="{{url_for('static', filename='trade.png')}}" alt="Trading example">
+                <img class="display-4" width="871.5px" height="455px" src="{{url_for('static', filename='trade.png')}}"
+                     alt="Trading example">
 
                 <hr>
             </div>

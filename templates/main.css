@@ -1,0 +1,30 @@
+/* MAIN CSS */
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) {
+	.small-d-margin {
+			margin: 0 5% !important;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) {
+	.medium-d-margin {
+			margin: 0 10% !important;
+	}
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) {
+	.large-d-margin {
+		margin: 0 20% !important;
+	}
+}
+
+
+#asdf {
+	background:green !important;
+}
