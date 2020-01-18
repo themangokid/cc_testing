@@ -10,6 +10,13 @@ app = Flask(__name__)
 def render_index():
     return render_template('index.html')
 
+@app.route('/form')
+def form():
+    return render_template('form.html')
+
+@app.route('/ens')
+def ens():
+    return render_template('ens.html')
 
 if __name__ == "__main__":
     app.run()

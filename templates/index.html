@@ -9,15 +9,13 @@
     <meta name="author" content="Coineer">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" src="{{url_for('temsplates', filename='bootstrap.min.css')}}">
-    <!-- <link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
     <title>Coineer - Your Local Bitcoin and Ethereum Exchange</title>
     <style media="screen">
           #ex1Slider .slider-selection {
       background: #BABABA;
-      }
-
-
+      }<
     </style>
 </head>
 
@@ -26,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 </head>
 
-
+<div class="container-fluid">
 <!-- Form
 <div class="form-check">
   <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -92,26 +90,26 @@
     <div class="col-lg-10" style="margin: 0 auto;" small-d-margin medium-d-margin large-d-margin>
         <div class="h-100" style="margin-right: 0  20% ">
             <h2 class="display-5">Coineer - We hold coins</h2>
-            <div class="animated fadeIn fast">
+            <div class="animated fadeIn faster">
                 <p class="lead">We believe in a trust-based relationship with you as a customer. Saving long-term using
                     <samp>Ethereum</samp>, <samp>Bitcoin</samp> or <samp>Dai</samp> as a currency instead of
                     conventional banking.</p>
             </div>
 
-            <hr class="animated fadeIn delay-2s" class="my-4">
-            <div class="animated fadeIn fast">
+            <hr class="animated fadeIn fast" class="my-4">
+            <div class="animated fadeIn faster">
                 <p> Pay with Swish or cash (SEK) and we find a competitive price on the market. Usually takes up to two
                     business days. </p>
             </div>
             <div style="margin-top:5%;">
                 <p class="lead">
-                    <a href="form.html" class="btn btn-primary btn-lg mt-1">
+                    <a href="{{ url_for('form') }}" class="btn btn-primary btn-lg mt-1">
                         Buy <img src="{{url_for('static', filename='eth.svg')}}" width="20" height="22"
                                  style=" margin-top:-6px;">
 
                     </a>
                 </p>
-                <div class="animated fadeIn delay-1s" style="margin: 5% 5% 5% 0;">
+                <div class="animated fadeIn fast" style="margin: 5% 5% 5% 0;">
                     <h3> What we do: </h3>
                     <li> Walk through of wallet creation <samp><a href="https://www.myetherwallet.com/getting-started">myetherwallet.com</a></samp>
                     <li> Make sure that the price is reasonable</li>
@@ -122,23 +120,23 @@
                     <li> Register and setting up a <a href="https://ens.domains/">ENS</a> domain</li>
                 </div>
             </div>
-            <div class="animated fadeIn delay-1s">
+            <div class="animated fadeIn fast">
                 <hr>
             </div>
-            <div class="animated fadeIn delay-1s" style="margin-top:5%;">
+            <div class="animated fadeIn fast" style="margin-top:5%;">
                 <h5>
                     <samp class=""><a href="mailto:coineer@protonmail.com?subject=Buy Bitcoin ">
                         majorone@protonmail.com </a></samp>
                 </h5> If you know enough about crypto currencies and mostly want the opportunity to buy, use the subject
                 <samp> "Buy Bitcoin" or "Buy Ethereum"</samp>.
                 <p>We bough here, something something well played!</p>
-                <img class="display-4" width="871.5px" height="455px" src="{{url_for('static', filename='trade.png')}}"
+                <img height="870" height="470" class="img-fluid" src="{{url_for('static', filename='trade.png')}}"
                      alt="Trading example">
-
                 <hr>
             </div>
         </div>
     </div>
+</div>
 </div>
 </div>
 </div>
