@@ -12,8 +12,6 @@ HAR INGEN ANING OM VAD SOM HÄNDER HÄR DETTA ÄR COPY PASTE:AD KOD. KAN VARA BR
 """
 
 
-
-
 cursor = connection.cursor()
 cursor.execute("SELECT * FROM EmployeeMaster")
 s = "<table style='border:1px solid red'>"
