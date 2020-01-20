@@ -78,22 +78,22 @@ class Customer:
     def result(self):
         if self.buy_only == "ja":
             print("buy_only")
-            print("Köpare:              {0}\n"
+            print("Buy:              {0}\n"
                   "Investering:         {1}\n"
-                  "Coinbase fee: (köp): {2}\n"
+                  "Coinbase fee: (kop): {2}\n"
                   "Coinbase fee: (send):{2}\n"
                   "Foretagets fee:      {3}\n"
-                  "Total fees för kund: {4}\n".format(self.name, self.investing, self.coinbase_fee,
+                  "Total fees for kund: {4}\n".format(self.name, self.investing, self.coinbase_fee,
                                                       self.company_fee, (self.cb_total_fees + self.company_fee)))
         elif self.trading_allowed == "ja":
             print("trading_allowed")
-            print("Köpare:              {0}\n"
+            print("Kopare:              {0}\n"
                   "Investering:         {1}\n"
-                  "Coinbase fee: (köp): {2}\n"
+                  "Coinbase fee: (kop): {2}\n"
                   "Coinbase fee: (send):{2}\n"
                   "Binance  fee: (send):{3}\n"
                   "Foretagets fee:      {4}\n"
-                  "Total fees för kund: {5}\n".format(self.namn, self.investing, self.coinbase_fee,
+                  "Total fees for kund: {5}\n".format(self.namn, self.investing, self.coinbase_fee,
                                                       self.binance_withdraw_fee, self.company_fee, ((
                                                                                                             self.cb_total_fees + self.company_fee + self.binance_withdraw_fee) * self.trading_tillatet_fee_percent)))
 
